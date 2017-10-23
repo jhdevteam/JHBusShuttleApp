@@ -1,0 +1,5 @@
+dependencies: \
+  /Users/user2/Desktop/JHService/JHShuttle/JHBusShuttleAppDV/node_modules/react-native/Libraries/Vibration/RCTVibration.m \
+  /Users/user2/Desktop/JHService/JHShuttle/JHBusShuttleAppDV/node_modules/react-native/Libraries/Vibration/RCTVibration.h \
+  /Users/user2/Desktop/JHService/JHShuttle/JHBusShuttleAppDV/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/user2/Desktop/JHService/JHShuttle/JHBusShuttleAppDV/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h
