@@ -7,11 +7,11 @@ import {
   ,Button,
   TouchableOpacity,
   TouchableHighlight,
-  //View, 
-  //List,
+  View, 
+  List,
 } from "react-native";
 
-import { View, List, ListItem, Left, Body } from "native-base";
+//import { View, List, ListItem, Left, Body } from "native-base";
 import DictStyle from './DicStyle';
 //import Icon from "react-native-vector-icons/Evillcons";
 export const ShowRoute=({pickDropData,toggleShowRouteTime,ShowHide,RouteResult,toggleShowRouteDeatils,showHideRt,getPickDropTimeDetails,PickDropTime})=>
