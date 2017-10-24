@@ -227,7 +227,7 @@ function handlereversePickDrop(state,action){
 
 function handlegetLocationIndex(state,action){
     return update(state,{
-        LocationIndex:{
+        GetLocIndex:{
            $set:action.GetLocIndex
         }
    })
@@ -253,7 +253,7 @@ const  initialState={
     showHideRt:{},
     PickDropTime:{},
     TogglePickDrop:'_click',
-    GetLocIndex:-1
+    //GetLocIndex:{}
 };
 //Reducer
 export function MapReducer(state=initialState,action)
