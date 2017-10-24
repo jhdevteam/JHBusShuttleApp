@@ -6,7 +6,7 @@ import RtData from "../API/RouteData";
 // Constants
 //........
 const {PRESENT_POSITION,GET_LOCATION_DATA,GET_PICDROP_DATA,SHOW_HIDE_TIME,MATCHED_ROUTE_RESULT,
-    SHOW_HIDE_RT,GET_PICK_DROP_TIME,REVERSE_PICK_DROP}=constants;
+    SHOW_HIDE_RT,GET_PICK_DROP_TIME,REVERSE_PICK_DROP,GET_LOCATION_INDEX}=constants;
 /// Actions
 export function getPresentPosition()
 {
@@ -134,6 +134,26 @@ export function reversePickDrop(that) {
       
 }
 
+export function getLocationIndex(value) {
+  var hh =[];
+         picDropItems = RtData.LocationDetails.map((item) => {
+          hh.push(item.TITLE)
+        //return <Picker.Item key={item.RouteId.toString()} label={item.TITLE} />
+        }); 
+    for(var i = 0; i < hh.length; i++) {
+        if(hh[i] === value) {
+            return{
+            type:GET_LOCATION_INDEX,
+            GetLocIndex:i
+        }
+        }
+    }
+    return{
+            type:GET_LOCATION_INDEX,
+            GetLocIndex:-1
+        } //to handle the case where the value doesn't exist
+}
+
 //Action Handlers
 function handleGetCurrentPosition(state,action){
    return update(state,{
@@ -205,6 +225,14 @@ function handlereversePickDrop(state,action){
    })
 }
 
+function handlegetLocationIndex(state,action){
+    return update(state,{
+        LocationIndex:{
+           $set:action.GetLocIndex
+        }
+   })
+}
+
 const ACTION_HANDLERS={
     PRESENT_POSITION  : handleGetCurrentPosition,
     GET_PICDROP_DATA  : handleGetDropPicLocation,
@@ -213,7 +241,8 @@ const ACTION_HANDLERS={
     MATCHED_ROUTE_RESULT : handleTgetRouteResult,
     SHOW_HIDE_RT : handletoggleShowRouteDeatils,
     GET_PICK_DROP_TIME : handleGetPickDropTimeDetails,
-    REVERSE_PICK_DROP : handlereversePickDrop
+    REVERSE_PICK_DROP : handlereversePickDrop,
+    GET_LOCATION_INDEX : handlegetLocationIndex
 }
 
 const  initialState={
@@ -223,7 +252,8 @@ const  initialState={
     RouteResult:[],
     showHideRt:{},
     PickDropTime:{},
-    TogglePickDrop:'_click'
+    TogglePickDrop:'_click',
+    GetLocIndex:-1
 };
 //Reducer
 export function MapReducer(state=initialState,action)

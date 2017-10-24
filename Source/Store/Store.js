@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import {MapReducer} from "../Modules/MapModule"
 
+
 export const makeRootReducer=()=>{
     return combineReducers({
         MapReducer

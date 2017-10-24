@@ -5,7 +5,7 @@
  */
 
 import React, {Component} from 'react';
-import { Vibration, AppRegistry,StyleSheet,Text,TouchableOpacity, View, Image, Modal, TouchableHighlight, ScrollView, FlatList} from 'react-native';
+import { Vibration, AppRegistry,StyleSheet,Text,TouchableOpacity,AsyncStorage, View, Image, Modal, TouchableHighlight, ScrollView, FlatList} from 'react-native';
 //import {Container} from 'native-base';
 //import HideableView from 'react-native-hideable-view';
 import {Fonts} from 'react-native-vector-icons';
@@ -19,6 +19,7 @@ import renderIfElse from './renderIfElse';
 import MockData from './mockData';
 import DictStyle from './DicStyle';
 import MapComponent from "./MapComponent";
+import RtData from "../API/RouteData";
 
 const styles = StyleSheet.create({
   ShuttleDetailWrapper: {
@@ -105,14 +106,41 @@ class Home extends React.Component{
             super(props);
                 this.state = {
                 avtarSource: '_click',
+                "myKey":'',
+               
                 
             };
         }
+         
+    
+  
   
 componentDidMount()
 {    
     var rx = this;
-		this.props.getPresentPosition();
+    this.props.getPresentPosition();
+    
+     AsyncStorage.getItem("myKey").then((value) => {
+            //this.setState({"myKey": value});  
+            if(this.props.RouteResult.length==0) 
+              {
+
+
+                var value = JSON.parse(value);
+                this.props.getRouteResult(value.START_POINT,value.END_POINT);
+                //var pickIndex = getIndex(value.START_POINT)
+                this.props.getLocationIndex(value.START_POINT);
+                this.props.getDropPicLocation({
+                  key:"pickUp",
+                  value:this.props.GetLocIndex
+                }); 
+                this.props.getLocationIndex(value.END_POINT);
+                this.props.getDropPicLocation({
+                  key:"dropOff",
+                  value:this.props.GetLocIndex
+                }); 
+              }        
+        }).done();
 		setTimeout(function(){
       rx.props.getRouteDetails();      
     }, 1000);

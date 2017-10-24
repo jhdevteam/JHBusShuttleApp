@@ -11,6 +11,7 @@ import {
     toggleShowRouteDeatils,
     getPickDropTimeDetails,
     reversePickDrop,
+    getLocationIndex,
     MapModule
 } from "../Modules/MapModule";
 const mapStateToProps = (state) => ({  
@@ -23,7 +24,7 @@ const mapStateToProps = (state) => ({
   showHideRt:state.MapReducer.showHideRt,
   PickDropTime:state.MapReducer.PickDropTime,
   TogglePickDrop:state.MapReducer.TogglePickDrop||'_click',
-  
+  GetLocIndex:state.MapReducer.GetLocIndex 
 });
 const mapDispatchToProps = {  
     getPresentPosition,
@@ -33,7 +34,8 @@ const mapDispatchToProps = {
     getRouteResult,
     toggleShowRouteDeatils,
     getPickDropTimeDetails,
-    reversePickDrop
+    reversePickDrop,
+    getLocationIndex
 };
 
 const AppContainer =connect(mapStateToProps,mapDispatchToProps)(Home); 

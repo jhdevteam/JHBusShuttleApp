@@ -13,7 +13,7 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import { Tabs, Tab, Icon , SocialIcon, Header, Avatar} from 'react-native-elements';
 import renderIfElse from './renderIfElse';
 import renderIf from './renderIf';
-export const PicDropLoc=({picDropDetails,getDropPicLocation,avtarSource,reversePickDrop,pickDropData})=>
+export const PicDropLoc=({picDropDetails,getDropPicLocation,avtarSource,reversePickDrop,pickDropData,RouteResult})=>
 {
   
   var hh =[];
@@ -30,6 +30,16 @@ export const PicDropLoc=({picDropDetails,getDropPicLocation,avtarSource,reverseP
     }
     return -1; //to handle the case where the value doesn't exist
 }
+
+if(RouteResult)
+  {
+    var defaultPicIndex =getIndex(RouteResult.START_POINT);
+    var defaultPicValue =RouteResult.START_POINT;  
+
+    var defaultDropIndex =getIndex(RouteResult.END_POINT);
+    var defaultDropValue = RouteResult.END_POINT;
+  }
+
   
   function togglePickDrop(val){  
         if(pickDropData.pickUp && pickDropData.dropOff)
@@ -104,7 +114,10 @@ export const PicDropLoc=({picDropDetails,getDropPicLocation,avtarSource,reverseP
                             /> */}
                             <ModalDropdown ref={el => this._dropdown_Pickup = el}  
                               dropdownTextStyle={styles.ModalDropDownTextOption} 
-                              textStyle={styles.ModalDropDownText} options={hh}   
+                              textStyle={styles.ModalDropDownText} 
+                              options={hh} 
+                              defaultIndex={defaultPicIndex}
+                              defaultValue={defaultPicValue}
                               onSelect={bindPicDrop.bind(hh[this], "pickUp")}>
                             </ModalDropdown>  
                         </View>
@@ -145,7 +158,10 @@ export const PicDropLoc=({picDropDetails,getDropPicLocation,avtarSource,reverseP
                             <ModalDropdown ref={eld => this._dropdown_Drop = eld}
                             textStyle={styles.ModalDropDownText} 
                             dropdownTextStyle={styles.ModalDropDownTextOption}  
-                            options={hh} onSelect={bindPicDrop.bind(hh[this], "dropOff")}             />
+                            options={hh} 
+                            defaultIndex={defaultDropIndex}
+                            defaultValue={defaultDropValue}
+                            onSelect={bindPicDrop.bind(hh[this], "dropOff")}             />
                         </View>
                         <View  style={{left: 300, position: 'absolute'}}>
                              {(avtarSource == '_click') &&

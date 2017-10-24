@@ -7,16 +7,16 @@ import {
   ,Button,
   TouchableOpacity,
   TouchableHighlight,
-  View, 
-  List,
+  //View, 
+  //List,
+  AsyncStorage,
 } from "react-native";
 
-//import { View, List, ListItem, Left, Body } from "native-base";
+import { View, List, ListItem, Left, Body } from "native-base";
 import DictStyle from './DicStyle';
 //import Icon from "react-native-vector-icons/Evillcons";
 export const ShowRoute=({pickDropData,toggleShowRouteTime,ShowHide,RouteResult,toggleShowRouteDeatils,showHideRt,getPickDropTimeDetails,PickDropTime})=>
 {
-  
   function ShowRoute() {
    var val =   "show"; 
    toggleShowRouteTime({
@@ -50,6 +50,15 @@ export const ShowRoute=({pickDropData,toggleShowRouteTime,ShowHide,RouteResult,t
 			valRT
 		});
  }
+
+
+ function SetFavouriteRoute() {
+   
+   AsyncStorage.setItem("myKey", JSON.stringify(RouteResult));
+        //this.setState({myKey: RouteResult.ROUTE_TITLE});
+        //alert(JSON.stringify(RouteResult));
+        
+ }
   
   /* var hh =[];
         let picDropItems = picDropDetails.map((item) => {
@@ -67,6 +76,9 @@ export const ShowRoute=({pickDropData,toggleShowRouteTime,ShowHide,RouteResult,t
               }            
             accessibilityLabel="Learn more about this purple button"
          />  */}
+         <TouchableHighlight onPress={()=>SetFavouriteRoute()} >
+          <Text>Set Favourite</Text>
+        </TouchableHighlight>
           <TouchableHighlight onPress={()=>ShowRoute()} onLongPress={()=>HideRoute()}>
           <Text>{              
                 RouteResult.ROUTE_TITLE

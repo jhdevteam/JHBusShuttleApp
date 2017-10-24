@@ -83,13 +83,15 @@ export const MapComponent=({region,pickDropDeatils,getDropPicLocation,pickDropDa
             avtarSource = {avtarSource}
             reversePickDrop= {reversePickDrop}
             pickDropData = {pickDropData}
+            RouteResult={RouteResult} 
             />
         </View>
             <View>
             {RouteResult.ROUTE_TITLE &&
             <ShowRoute pickDropData={pickDropData} 
             toggleShowRouteTime={toggleShowRouteTime} 
-            ShowHide={ShowHide} RouteResult={RouteResult} 
+            ShowHide={ShowHide} 
+            RouteResult={RouteResult} 
             toggleShowRouteDeatils={toggleShowRouteDeatils}
             showHideRt ={showHideRt}
             getPickDropTimeDetails={getPickDropTimeDetails}
