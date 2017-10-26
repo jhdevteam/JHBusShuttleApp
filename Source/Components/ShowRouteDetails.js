@@ -7,12 +7,13 @@ import {
   ,Button,
   TouchableOpacity,
   TouchableHighlight,
-  //View, 
+  View, 
   //List,
+  ListView,
   AsyncStorage,
 } from "react-native";
 
-import { View, List, ListItem, Left, Body } from "native-base";
+//import { View, List, } from "native-base";
 import DictStyle from './DicStyle';
 //import Icon from "react-native-vector-icons/Evillcons";
 export const ShowRoute=({pickDropData,toggleShowRouteTime,ShowHide,RouteResult,toggleShowRouteDeatils,showHideRt,getPickDropTimeDetails,PickDropTime})=>
@@ -60,6 +61,11 @@ export const ShowRoute=({pickDropData,toggleShowRouteTime,ShowHide,RouteResult,t
         
  }
   
+
+ const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows(RouteResult.ROUTE_SERVICE),
+    };
   /* var hh =[];
         let picDropItems = picDropDetails.map((item) => {
           hh.push(item.TITLE)
@@ -90,8 +96,10 @@ export const ShowRoute=({pickDropData,toggleShowRouteTime,ShowHide,RouteResult,t
     (ShowHide.val=="show") &&
       <View style={styles.RtTime}>            
           <View style={styles.searchResultsWrapper} >
-				<List 
-					dataArray={RouteResult.ROUTE_SERVICE}
+				{/* <List 
+					dataArray={RouteResult.ROUTE_SERVICE} */}
+          <ListView
+        dataSource={this.state.dataSource}
 					renderRow={(item)=>
 						<TouchableOpacity key={item} >
         <View
