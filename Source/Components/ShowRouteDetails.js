@@ -56,8 +56,7 @@ export const ShowRoute=({pickDropData,toggleShowRouteTime,ShowHide,RouteResult,t
  function SetFavouriteRoute() {
    
    AsyncStorage.setItem("myKey", JSON.stringify(RouteResult));
-        //this.setState({myKey: RouteResult.ROUTE_TITLE});
-        //alert(JSON.stringify(RouteResult));
+       
         
  }
   

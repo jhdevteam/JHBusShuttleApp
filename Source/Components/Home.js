@@ -122,7 +122,7 @@ componentDidMount()
     
      AsyncStorage.getItem("myKey").then((value) => {
             //this.setState({"myKey": value});  
-            if(this.props.RouteResult.length==0) 
+            if(value && value !=null) 
               {
 
 
